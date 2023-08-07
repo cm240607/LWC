@@ -32,7 +32,7 @@ jobs:
             node-version: '14'
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check out Source Code
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
