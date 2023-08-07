@@ -36,9 +36,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      # Now Install Salesforce CLI
+      - name: 'Install Salesforce CLI'
+        run: |
+              wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
+              mkdir ~/sfdx
+              tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
+              echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+              ~/sfdx/bin/sfdx version
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
