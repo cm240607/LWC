@@ -45,8 +45,21 @@ jobs:
               echo "$HOME/sfdx/bin" >> $GITHUB_PATH
               ~/sfdx/bin/sfdx version
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # Then we install the SFDX-Git-Delta plugin - https://github.com/scolladon/sfdx-git-delta
+      # This is an awesome plugin that allows us to extract a package.xml with the metadata
+      # that has changed between commits. I highly recommend going over the github readme 
+      # for more information on how this works.
+
+      - name: 'Installing sfdx git delta'
+        run: | 
+              echo y | sfdx plugins:install sfdx-git-delta
+              sfdx plugins
+      # Install java as it is required for the next step
+      - name: 'Installing java'
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+                sudo apt-get update
+                sudo apt install default-jdk
+
+      # Install SFDX scanner
+      - name: 'Installing SFDX scanner'
+        run: sfdx plugins:install @salesforce/sfdx-scanner
