@@ -1,0 +1,55 @@
+<apex:page controller="TheController">
+    <apex:stylesheet value="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"/>
+    <apex:includeScript value="//code.jquery.com/jquery-1.10.2.js"/>
+    <apex:includeScript value="//code.jquery.com/ui/1.11.2/jquery-ui.js"/>
+    <script>
+        $(document).ready(function() {
+            $(document.getElementById("{!$Component.theForm.thePageBlock.theSection1.theSectionItem.theTable1}")).find("tbody").addClass('connectedSortable');
+            $(document.getElementById("{!$Component.theForm.thePageBlock.theSection2.theSectionItem.theTable2}")).find("tbody").addClass('connectedSortable');
+            $(document.getElementById("{!$Component.theForm.thePageBlock.theSection1.theSectionItem.theTable1}")).find("tbody")
+                .sortable({
+                    connectWith: ".connectedSortable",
+                    items: "> tr:not(:first)",
+                    appendTo: "parent",
+                    helper: "clone",
+                    cursor: "move",
+                    zIndex: 999990
+                });
+            $(document.getElementById("{!$Component.theForm.thePageBlock.theSection2.theSectionItem.theTable2}")).find("tbody")
+                .sortable({
+                    connectWith: ".connectedSortable",
+                    items: "> tr:not(:first)",
+                    appendTo: "parent",
+                    helper: "clone",
+                    cursor: "move",
+                    zIndex: 999990
+                });            
+        });
+    </script>
+    <apex:form id="theForm">
+        <apex:pageBlock id="thePageBlock" >
+            <apex:pageBlockSection columns="2" collapsible="true" title="PageBlockSection1" id="theSection1">
+                <apex:pageBlockSectionItem id="theSectionItem">
+                    <apex:pageBlockTable value="{!accounts}" var="account" id="theTable1" styleClass="mytable">
+                        <apex:column value="{!account.Name}"/>
+                        <apex:column value="{!account.AccountNumber}"/>
+                        <apex:column value="{!account.OwnerId}"/>
+                        <apex:column value="{!account.Phone}"/>
+                        <apex:column value="{!account.Fax}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="2" collapsible="true" title="PageBlockSection2" id="theSection2">
+                <apex:pageBlockSectionItem id="theSectionItem">
+                    <apex:pageBlockTable value="{!accounts}" var="account" id="theTable2" styleClass="mytable">
+                        <apex:column value="{!account.Name}"/>
+                        <apex:column value="{!account.AccountNumber}"/>
+                        <apex:column value="{!account.OwnerId}"/>
+                        <apex:column value="{!account.Phone}"/>
+                        <apex:column value="{!account.Fax}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

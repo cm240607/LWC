@@ -1,0 +1,13 @@
+<apex:page controller="c1">
+<apex:form >
+    <apex:pageBlock title=" Accounts list">
+    
+        <apex:pageBlockTable var="c" value="{!accct}" >
+            <apex:column value="{!c.Name}"/>
+            <apex:column value="{!c.type}"/>
+            
+            <apex:inlineEditSupport />
+        </apex:pageBlockTable>     
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

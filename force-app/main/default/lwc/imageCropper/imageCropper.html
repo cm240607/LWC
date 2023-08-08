@@ -1,0 +1,86 @@
+<template>
+    <lightning-card>
+        <div class="slds-p-horizontal_small">
+            <lightning-input type="file" name="FileUpload" label="Upload Attachment" onchange={handleFilesChange}>
+            </lightning-input>
+
+            <div class="slds-m-top_small slds-scrollable">
+                <img class="canvas-image" height={height} width={width} />
+            </div>
+        </div>
+
+        <div slot="footer">
+            <div class="slds-text-align_center">
+                <lightning-button-group>
+                    <lightning-button-icon icon-name="utility:zoomin" alternative-text="Zoom In"
+                        onclick={onZoomInClick}>
+                    </lightning-button-icon>
+                    <lightning-button-icon icon-name="utility:zoomout" alternative-text="Zoom Out"
+                        onclick={onZoomOutClick}>
+                    </lightning-button-icon>
+                </lightning-button-group>
+
+                <lightning-button-group>
+                    <lightning-button-icon icon-name="utility:insert_tag_field" alternative-text="Flip Horizontal"
+                        onclick={onScaleXClick}>
+                    </lightning-button-icon>
+                    <lightning-button-icon icon-name="utility:sort" alternative-text="Flip Vertical"
+                        onclick={onScaleYClick}>
+                    </lightning-button-icon>
+                </lightning-button-group>
+
+                <lightning-button-group>
+                    <lightning-button-icon icon-name="utility:undo" alternative-text="Rotate Left"
+                        onclick={onLeftRotateClick}>
+                    </lightning-button-icon>
+                    <lightning-button-icon icon-name="utility:redo" alternative-text="Rotate Right"
+                        onclick={onRightRotateClick}>
+                    </lightning-button-icon>
+                </lightning-button-group>
+
+                <lightning-button-group>
+                    <lightning-button-icon icon-name="utility:drag" alternative-text="Crop" onclick={onCropClick}>
+                    </lightning-button-icon>
+                    <lightning-button-icon icon-name="utility:check" alternative-text="Done Editing"
+                        onclick={onSaveClick}>
+                    </lightning-button-icon>
+                    <lightning-button-icon icon-name="utility:retweet" alternative-text="Reset" onclick={onResetClick}>
+                    </lightning-button-icon>
+                </lightning-button-group>
+
+                <lightning-button-group>
+                    <lightning-button-icon icon-name="utility:lock" alternative-text="Lock Canvas"
+                        onclick={onDisableClick}>
+                    </lightning-button-icon>
+                    <lightning-button-icon icon-name="utility:unlock" alternative-text="Unlock Canvas"
+                        onclick={onEnableClick}>
+                    </lightning-button-icon>
+                </lightning-button-group>
+            </div>
+        </div>
+
+        <div class="modal-container" style="height: 15rem; display: none;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning-button-icon class="slds-modal__close" variant="bare-inverse"
+                            icon-name="utility:close" size="large" alternative-text="Close" onclick={onCancelChanges}>
+                        </lightning-button-icon>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Image Preview</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium slds-is-relative" id="modal-content-id-1">
+                        <lightning-spinner if:true={isProcessing} variant="brand" size="medium"></lightning-spinner>
+                        <img class="canvas-preview" height="100%" width="100%" />
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={onCancelChanges}>Cancel</button>
+                        <button class="slds-button slds-button_brand" onclick={onSaveChanges}>Save</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </lightning-card>
+
+</template>

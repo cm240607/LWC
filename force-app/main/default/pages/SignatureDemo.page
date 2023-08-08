@@ -1,0 +1,51 @@
+<apex:page controller="SignDemo">
+
+ <script type="text/javascript" >
+
+    $( window ).load(function(){
+        $('#Sign').sketch(); // associating sketch function with canvas.
+    });
+
+// clear canvas on clear button.
+function clearSketch(){          
+
+        $('#Sign').replaceWith('<canvas id="Sign" style="border:2px solid; border-radius:10px 10px 10px 10px;height: 150px;width: 300px;background:white; border-color:lightgray"></canvas>');
+
+        $('#Sign').sketch();
+ }  
+
+function save(){
+       // Get Data URL from the canvas i.e. signed by the user.
+      var dataUrl = document.getElementById('Sign').toDataURL();
+
+     // use Remote Action function to generate image.
+     Visualforce.remoting.Manager.invokeAction(
+
+           '{!$RemoteAction.SignDemo.GenerateImage}',dataUrl ,
+
+            function(result, event) {
+
+                if (event.status) {
+                // Redirect to the attachment and open attachment as image.
+                window.open('/servlet/servlet.FileDownload?file='+result);
+           }
+       });
+
+   }
+
+</script>
+
+    Draw your signature : 
+
+    <div>
+        <canvas id="Sign" style="border:2px solid; border-radius:10px 10px 10px 10px;height: 150px;
+
+                                    width: 300px;background:white; border-color:lightgray" ></canvas>
+
+        <input type="button" value="Clear"  onclick="clearSketch()" /> 
+    </div>
+    <br/>
+
+    <input type='button' value='save' onclick='save()'/>
+
+</apex:page>

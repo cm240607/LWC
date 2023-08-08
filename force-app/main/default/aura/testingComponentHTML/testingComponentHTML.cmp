@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	Hello World!
+    <lightning:formattedText value="Hello World in formated text" />
+    <p><lightning:formattedText linkify="true" value="I like salesforce.com and info.salesforce.com" /></p>
+</aura:component>

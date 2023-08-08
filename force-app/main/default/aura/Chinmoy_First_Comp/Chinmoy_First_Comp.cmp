@@ -1,0 +1,32 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,force:hasSObjectName"
+                access="global" controller="Chinmoy_ObjectSerchUtility"
+ >
+  <!--Define the Components parameters-->
+    <Aura:Attribute name="ObjectName" type="String[]" default=" ,User,Territory,Role"/>
+    <aura:attribute name="selectedColor" type="String" default="none"/>
+    <aura:attribute name="Object" type="Object" default="none"/>
+    
+<!--
+    <aura:handler name="init" value="{!this}" action="{!c.loadOptions}" />
+-->
+    <aura:attribute name="sobjecttype" type="String" default="{!v.sObjectName}"/>
+  {!v.sobjecttype}
+
+	<div> 
+        <p>Welcome to my page</p>
+        <p>You have selected : {!v.selectedColor}</p>
+        <lightning:select aura:id="selectObject"
+                          name="select" 
+                          label="Select a ObjectName" 
+                          required="true" 
+                          onchange="{!c.onSelect}">
+                   <aura:iteration items="{!v.ObjectName}" var="color">
+                		<option Value="{!color}">{!color}</option>
+            		</aura:iteration>
+    </lightning:select>
+   
+    <lightning:button variant="brand" label="Submit" title="Brand action" onclick="{!c.handleClick }" />
+      
+    </div>
+    
+</aura:component>

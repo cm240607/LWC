@@ -1,0 +1,10 @@
+<apex:page standardController="Account" title="hello" renderAs="pdf">
+    <apex:pageBlock title="PageBlock">
+            <apex:pageBlockSection title="Section1"> Some Text Here </apex:pageBlockSection>
+ 
+        </apex:pageBlock>
+  
+         HI There.....are you still
+   
+   
+</apex:page>

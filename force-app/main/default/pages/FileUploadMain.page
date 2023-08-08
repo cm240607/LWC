@@ -1,0 +1,10 @@
+<apex:page >
+    <apex:form >
+        
+            <apex:commandButton value="Attach Files" styleClass="myButtons" 
+                   onClick="window.open('/apex/IFH_FileAttachProcess_Page);" 
+                    reRender="null"                    
+                    title="File Upload">
+                </apex:commandButton>
+    </apex:form>
+</apex:page>

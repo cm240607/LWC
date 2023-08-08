@@ -1,0 +1,65 @@
+<!--
+  @File Name          : FileUploadProcessing.page
+ 
+-->
+<apex:page id="IFH_FileAttachProcess_Page" controller="IFH_FileAttachProcess_Controller">
+    <apex:form >
+     <apex:outputPanel >
+        <apex:pageBlock >
+            <apex:pageBlockSection columns="1" collapsible="false" title="Attach Files">
+
+                <apex:pageBlockSectionItem id="errorMessage" dataStyleClass="hidden">
+                    <apex:pageMessages escape="false"/>
+                </apex:pageBlockSectionItem>
+                <apex:tabPanel switchType="client" selectedTab="multiUpload" id="massUploadTabPanel"
+                        activeTabClass="tabButtonsActive" tabClass="tabButtons">
+                    
+                    <apex:tab label="Attach multiple files (<30 MB per file)" name="multiUpload" id="multiUploadTab" status="processing">
+                        <table id="displayFiles" class="DisplayFilesClass">
+                            <thead>
+                                <th class="inputDetail">File Ext</th>
+                                <th class="inputDetail">File Name</th>
+                                <th class="inputDetail">File Type</th>
+                                <th id="language" class="inputDetail">Language</th>
+                                <th id="earlyEngagement" class="inputDetail hidden">Early Engagement</th>
+                                <th id="gacCategory" class="inputDetail hidden">Category</th>
+                                <th id="rationale" class="inputDetail hidden">Rationale</th>
+                                <th id="changeLocation" class="inputDetail hidden">Location</th>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div id="dropArea">
+                            <input id="input-file" type="file" multiple="true"/>
+                            <span id="holder_txt1">Drag and drop file here</span>
+                            <span id="holder_txt2" class="hidden">Upload</span>
+                            <span id="holder_txt3" class="hidden"></span>
+                        </div>
+                        <button id="saveButton" onclick="multiUpload()">Save</button>
+                        <span id="status">Ready to Start</span>
+                    </apex:tab>      
+                </apex:tabPanel>                  
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:outputPanel>
+  
+    </apex:form>
+   <script src="/soap/ajax/47.0/connection.js" type="text/javascript">
+    </script>
+    
+    <script>
+    function multiUpload(){
+        alert(this.sessionID);
+        
+        }
+       let input = document.querySelector('input[id=input-file]');
+        input.addEventListener('change', function(event) {
+            if(this.value != '')
+               alert('Hello file');
+            alert(this.files);
+        })
+        let filesArray = [], itemCounter = 0, languageOptionsList, fileTypeList, recordType = {};
+        sforce.connection.sessionId='{!GETSESSIONID()}';
+        
+  	</script>
+    
+</apex:page>
